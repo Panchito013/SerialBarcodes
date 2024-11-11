@@ -1,4 +1,6 @@
-
+function reset(){
+    location.reload();
+}
 function loadCSV() {
 
     const fileInput = document.getElementById('csvFile');
