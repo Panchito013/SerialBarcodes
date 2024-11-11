@@ -18,7 +18,7 @@ function loadCSV() {
             // Array diviso in dataArray = {[PartNumber][MaterialName]}
             if(dataArray.length != 0){
                 for(let i = 1; i < dataArray.length - 1; i++){
-                    var snlbl = `SN-${dataArray[i][0]}-${moment().format('YYYYMMDD')}-${random(1000,9999)}`;
+                    var snlbl = `SN-${dataArray[i][0]}-${moment().format('YYYYDD')}-${random(100,999)}`;
                     JsBarcode("#barcode"+ (i), snlbl,{width:1.5});
                     var headEl = document.getElementById('head' + (i));
                     headEl != null ? headEl.innerHTML = dataArray[i][1] : 0;
