@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarcodeGen</title>
+    <link rel="stylesheet" href="./css/Bootstrap/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/logo/serialbars.jpeg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            SerialBars
+          </a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <input type="file" accept=".csv" class="form-control" id="csvFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <button onclick="loadCSV()" class="btn btn-outline-primary" type="button" id="inputGroupFileAddon04">Load CSV</button>
+                </div>
+            </div>
+            <div class="col">
+                <button onclick="generatePDF()"  type="button" class="btn btn-outline-danger" id="download-button">Export PDF</button>
+                <button id="download-spinner" class="btn btn-danger" type="button" disabled hidden>
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    <span role="status">Loading...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pdfEl">
+        <br>
+        <div class="container text-center" id="barcodes">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head1">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode1"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head2">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode2"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head3">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode3"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head4">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode4"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head5">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode5"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head6">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode6"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head7">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode7"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head8">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode8"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head9">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode9"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head10">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode10"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head11">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode11"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head12">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode12"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head13">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode13"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head14">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode14"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head15">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode15"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head16">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode16"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head17">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode17"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head18">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode18"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head19">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode19"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header" id="head20">
+                        </div>
+                        <div class="card-body">
+                            <svg id="barcode20"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+
+       
+
+    <script src="./javascript/Bootstrap/bootstrap.min.js"></script>
+    <script src="./javascript/JsBarcode/JsBarcode.all.min.js"></script>
+    <script src="./javascript/MomentJs/moment.min.js"></script>
+    <script src="./javascript/PdfJs/pdf.min.js"></script>
+    <script src="./javascript/main.js"></script>
+</body>
+</html>
