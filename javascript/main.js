@@ -85,4 +85,13 @@ function addSN(serialNumber) {
     JsBarcode("#barcode" + (i), snlbl, { width: 1 });
     var headEl = document.getElementById('head' + (i));
     headEl != null ? headEl.innerHTML = dataArray[i][1] : 0;
+
+    var modal = document.getElementById('inputModal');
+    var modalInstance = bootstrap.Modal.getInstance(modal);
+    modalInstance.hide();
+
+    document.getElementById('saveInputBtn').addEventListener('click', function () {
+        const value = document.getElementById('addingSerialInput').value;
+        console.log('Valore inserito:', value);
+    });
 }
