@@ -1,4 +1,4 @@
-function reset(){
+function reset() {
     location.reload();
 }
 function loadCSV() {
@@ -9,7 +9,7 @@ function loadCSV() {
     if (file) {
         const reader = new FileReader();
 
-        reader.onload = function(event) {
+        reader.onload = function (event) {
             const csvData = event.target.result;
             const rows = csvData.split('\n'); // Dividi per righe
 
@@ -18,11 +18,21 @@ function loadCSV() {
             console.log(dataArray); // Mostra i dati in console
             // Ora dataArray contiene i dati del CSV
             // Array diviso in dataArray = {[PartNumber][MaterialName]}
-            if(dataArray.length != 0){
-                for(let i = 1; i < dataArray.length - 1; i++){
-                    var snlbl = `SN-${dataArray[i][0]}-${moment().format('YYDD')}-${random(100,999)}`;
-                    document.getElementsByClassName('card')[i-1].removeAttribute('hidden');
-                    JsBarcode("#barcode"+ (i), snlbl,{width:1});
+            if (dataArray.length != 0 && !document.getElementById('flexSwitchCheckDefault').checked) {
+                for (let i = 1; i < dataArray.length - 1; i++) {
+                    var snlbl = `SN-${dataArray[i][0]}-${moment().format('YYDD')}-${random(100, 999)}`;
+                    document.getElementsByClassName('card')[i - 1].removeAttribute('hidden');
+                    JsBarcode("#barcode" + (i), snlbl, { width: 1 });
+                    var headEl = document.getElementById('head' + (i));
+                    headEl != null ? headEl.innerHTML = dataArray[i][1] : 0;
+                }
+            }
+
+            if (dataArray.length != 0 && document.getElementById('flexSwitchCheckDefault').checked) {
+                for (let i = 1; i < dataArray.length - 1; i++) {
+                    var snlbl = `${dataArray[i][0]}`;
+                    document.getElementsByClassName('card')[i - 1].removeAttribute('hidden');
+                    JsBarcode("#barcode" + (i), snlbl, { width: 1 });
                     var headEl = document.getElementById('head' + (i));
                     headEl != null ? headEl.innerHTML = dataArray[i][1] : 0;
                 }
@@ -32,7 +42,7 @@ function loadCSV() {
 
         };
 
-        reader.onerror = function() {
+        reader.onerror = function () {
             console.error("Errore durante la lettura del file!");
         };
 
@@ -42,14 +52,14 @@ function loadCSV() {
     }
 }
 
-function random(min,max) {
-    return Math.floor((Math.random())*(max-min+1))+min;
+function random(min, max) {
+    return Math.floor((Math.random()) * (max - min + 1)) + min;
 }
 
 function generatePDF() {
     // Choose the element that your content will be rendered to.
-    document.getElementById('download-button').setAttribute('hidden','');
-    document.getElementById('download-spinner').removeAttribute('hidden','');
+    document.getElementById('download-button').setAttribute('hidden', '');
+    document.getElementById('download-spinner').removeAttribute('hidden', '');
 
     const element = document.getElementById('pdfEl');
     var now = moment().format("YYYYMMDD");
@@ -58,13 +68,13 @@ function generatePDF() {
     var opt = {
         pagebreak: { mode: 'avoid-all', before: '#page2el' },
         margin: 15,
-        jsPDF: {orientation: 'landscape'}
+        jsPDF: { orientation: 'landscape' }
     };
 
     // Choose the element and save the PDF for your user.
-    html2pdf().set(opt).from(element).save(fileName).then(function(){
-        document.getElementById('download-spinner').setAttribute('hidden','');
-        document.getElementById('download-button').removeAttribute('hidden','');
+    html2pdf().set(opt).from(element).save(fileName).then(function () {
+        document.getElementById('download-spinner').setAttribute('hidden', '');
+        document.getElementById('download-button').removeAttribute('hidden', '');
 
     });
 }
