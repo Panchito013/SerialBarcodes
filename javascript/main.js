@@ -79,57 +79,50 @@ function generatePDF() {
     });
 }
 
-function addSN() {
-    let currentIndex = 1; // tiene traccia della prossima card libera (1–20)
+function addSerial() {
+    const input = document.getElementById("addingSerialInput");
+    const serial = input.value.trim();
 
-    document.getElementById("saveInputBtn").addEventListener("click", addSerial);
-
-    function addSerial() {
-        const input = document.getElementById("addingSerialInput");
-        const serial = input.value.trim();
-
-        if (!serial) {
-            alert("Inserisci un Serial Number valido");
-            return;
-        }
-
-        if (currentIndex > 20) {
-            alert("Numero massimo di seriali raggiunto");
-            return;
-        }
-
-        // Header e barcode correnti
-        const header = document.getElementById(`head${currentIndex}`);
-        const barcode = document.getElementById(`barcode${currentIndex}`);
-
-        // Card padre
-        const card = header.closest(".card");
-
-        // Imposta header
-        header.innerText = serial;
-
-        // Genera barcode
-        JsBarcode(barcode, serial, {
-            format: "CODE128",
-            lineColor: "#000",
-            width: 2,
-            height: 50,
-            displayValue: true
-        });
-
-        // Mostra la card
-        card.hidden = false;
-
-        // Pulizia input
-        input.value = "";
-
-        // Avanza indice
-        currentIndex++;
-
-        // Chiudi modale (Bootstrap 5)
-        const modalEl = document.getElementById("inputModal");
-        const modal = bootstrap.Modal.getInstance(modalEl);
-        modal.hide();
+    if (!serial) {
+        alert("Inserisci un Serial Number valido");
+        return;
     }
 
+    if (currentIndex > 20) {
+        alert("Numero massimo di seriali raggiunto");
+        return;
+    }
+
+    // Header e barcode correnti
+    const header = document.getElementById(`head${currentIndex}`);
+    const barcode = document.getElementById(`barcode${currentIndex}`);
+
+    // Card padre
+    const card = header.closest(".card");
+
+    // Imposta header
+    header.innerText = serial;
+
+    // Genera barcode
+    JsBarcode(barcode, serial, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2,
+        height: 50,
+        displayValue: true
+    });
+
+    // Mostra la card
+    card.hidden = false;
+
+    // Pulizia input
+    input.value = "";
+
+    // Avanza indice
+    currentIndex++;
+
+    // Chiudi modale (Bootstrap 5)
+    const modalEl = document.getElementById("inputModal");
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
 }
