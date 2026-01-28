@@ -79,7 +79,7 @@ function generatePDF() {
     });
 }
 
-function addSN(serialNumber) {
+function addSN() {
     let currentIndex = 1; // tiene traccia della prossima card libera (1–20)
 
     document.getElementById("saveInputBtn").addEventListener("click", addSerial);
