@@ -89,9 +89,4 @@ function addSN(serialNumber) {
     var modal = document.getElementById('inputModal');
     var modalInstance = bootstrap.Modal.getInstance(modal);
     modalInstance.hide();
-
-    document.getElementById('saveInputBtn').addEventListener('click', function () {
-        const value = document.getElementById('addingSerialInput').value;
-        console.log('Valore inserito:', value);
-    });
 }
