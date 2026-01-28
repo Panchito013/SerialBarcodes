@@ -38,7 +38,9 @@
             </div>
             <div class="col">
                 <button onclick="reset()" type="button" class="btn btn-danger" id="download-button">Reset</button>
-                <button onclick="add()" type="button" class="btn btn-success" id="download-button">Add SN</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#inputModal">
+                    Add SN
+                </button>
             </div>
             <div class="col">
                 <div class="form-check form-switch">
@@ -262,6 +264,32 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Modale -->
+    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="inputModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inputModalLabel">Add Serial Number</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="userInput" class="form-label">SN</label>
+                        <input type="text" class="form-control" id="addingSerialInput" placeholder="Scrivi qui...">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-primary" id="saveInputBtn">Salva</button>
+                </div>
+
+            </div>
         </div>
     </div>
 

@@ -78,3 +78,11 @@ function generatePDF() {
 
     });
 }
+
+function addSN(serialNumber) {
+    var snlbl = `${serialNumber}`;
+    document.getElementsByClassName('card')[i - 1].removeAttribute('hidden');
+    JsBarcode("#barcode" + (i), snlbl, { width: 1 });
+    var headEl = document.getElementById('head' + (i));
+    headEl != null ? headEl.innerHTML = dataArray[i][1] : 0;
+}
