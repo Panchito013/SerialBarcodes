@@ -1,3 +1,5 @@
+let currentIndex = 1;
+
 function reset() {
     location.reload();
 }
@@ -80,7 +82,7 @@ function generatePDF() {
 }
 
 function addSerial() {
-    let currentIndex = 1;
+    reorder();
     const input = document.getElementById("addingSerialInput");
     const serial = input.value.trim();
 
@@ -102,7 +104,9 @@ function addSerial() {
     const card = header.closest(".card");
 
     // Imposta header
-    header.innerText = serial;
+    //header.innerText = `SN-${currentIndex}`;
+    header.querySelector(".sn-text").innerText = `SN-${currentIndex}`;
+
 
     // Genera barcode
     JsBarcode(barcode, serial, {
@@ -127,3 +131,22 @@ function addSerial() {
     const modal = bootstrap.Modal.getInstance(modalEl);
     modal.hide();
 }
+
+function deleteSN(index) {
+    const header = document.getElementById(`head${index}`);
+    const barcode = document.getElementById(`barcode${index}`);
+    const card = header.closest(".card");
+    card.hidden = true;
+    header.querySelector(".sn-text").innerText = "";
+    barcode.innerHTML = "";
+    reorder();
+}
+
+function reorder() {
+    for (let i = 1; i < currentIndex; i++) {
+        const header = document.getElementById(`head${i}`);
+        header.querySelector(".sn-text").innerText = `SN-${i}`;
+    }
+}
+
+
