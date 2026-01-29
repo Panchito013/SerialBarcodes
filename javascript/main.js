@@ -82,7 +82,6 @@ function generatePDF() {
 }
 
 function addSerial() {
-    reorder();
     const input = document.getElementById("addingSerialInput");
     const serial = input.value.trim();
 
@@ -130,6 +129,7 @@ function addSerial() {
     const modalEl = document.getElementById("inputModal");
     const modal = bootstrap.Modal.getInstance(modalEl);
     modal.hide();
+
 }
 
 function deleteSN(index) {
@@ -146,6 +146,10 @@ function reorder() {
     for (let i = 1; i < currentIndex; i++) {
         const header = document.getElementById(`head${i}`);
         header.querySelector(".sn-text").innerText = `SN-${i}`;
+        const deleteBtn = header.querySelector(".delete-sn");
+        deleteBtn.onclick = function () {
+            deleteSN(i);
+        };
     }
 }
 
