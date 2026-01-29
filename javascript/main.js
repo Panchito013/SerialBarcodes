@@ -80,6 +80,7 @@ function generatePDF() {
 }
 
 function addSerial() {
+    let currentIndex = 0;
     const input = document.getElementById("addingSerialInput");
     const serial = input.value.trim();
 
